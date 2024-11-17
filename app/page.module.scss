@@ -1,0 +1,72 @@
+/* 텍스트 활성화 */
+.paragraph {
+    font-size: 50px;
+    max-width: 1280px;
+    padding: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    line-height: 1;
+    .word {
+        margin-right: 12px;
+        margin-top: 12px;
+        position: relative;
+
+        .shadow {
+            position: absolute;
+            opacity: 0.1;
+        }
+    }
+}
+/* 텍스트 활성화 */
+
+/* 버튼 */
+.linkContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* 링크 간의 간격 */
+    padding-left: 20px; /* 좌측 여백 */
+    margin-top: 20px; /* 상단 여백 */
+}
+
+.link {
+    text-decoration: none;
+    font-size: 18px; /* 텍스트 크기 */
+    color: white;
+    padding: 10px 0; /* 위아래 패딩 */
+}
+/* 버튼 */
+
+/* 핀조명 */
+.container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+    overflow: hidden;
+    color: #fff;
+}
+
+.spotlight {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.9) 60%,
+        rgba(0, 0, 0, 0.1) 100%
+    );
+    border-radius: 50%;
+    pointer-events: none; /* 마우스 클릭 불가 */
+    mix-blend-mode: screen; /* 조명 효과를 강조 */
+    transform: translate(-50%, -50%);
+}
+
+.content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 1; /* 컨텐츠를 spotlight 위로 표시 */
+}
+/* 핀조명 */
