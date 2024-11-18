@@ -37,36 +37,104 @@
 /* 버튼 */
 
 /* 핀조명 */
-.container {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    background-color: #000;
-    overflow: hidden;
-    color: #fff;
-}
+// .menu_list {
+//     margin:200px auto 0 auto;
+//     width:350px;
+// }
 
-.spotlight {
-    position: absolute;
-    width: 200px;
-    height: 200px;
-    background: radial-gradient(
-        circle,
-        rgba(255, 255, 255, 0.9) 60%,
-        rgba(0, 0, 0, 0.1) 100%
-    );
-    border-radius: 50%;
-    pointer-events: none; /* 마우스 클릭 불가 */
-    mix-blend-mode: screen; /* 조명 효과를 강조 */
-    transform: translate(-50%, -50%);
-}
+// .menu_item {
+//     background: #000;
+//     border:1px solid #eee;
 
-.content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    z-index: 1; /* 컨텐츠를 spotlight 위로 표시 */
-}
+//     ul{
+//         display: flex
+//     }
+
+//     li{
+//         position:relative;
+//         width:100%;
+//         height:100%;
+//         cursor: pointer;
+//         display:inline-block;
+//         padding:30px;
+//         display:flex;
+//         align-items:center;
+//         justify-content:center;
+//     }
+// }
+
+// .underline {
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     right: 0;
+//     height: 3px;
+//     background: #eee;
+//     vertical-align:bottom;
+// }
+
 /* 핀조명 */
+
+.menu_list {
+    margin:200px auto 0 auto;
+    width:350px;
+    
+    position: relative;
+  }
+
+  .menu_item {
+    background: #000;
+    border:1px solid #eee;
+  }
+  
+  .menu_item ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .menu_item li {
+    position: relative;
+    padding: 1.5em 1em;
+    cursor: pointer;
+    font-size: 1.2em;
+    color: #fff;
+    // text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  }
+  
+  .underline {
+    --light-color: #ffeab1;
+    position: absolute;
+    bottom: -0.2em;
+    left: 10%;
+    right: 0;
+    width: 80%;
+    height: 2em;
+    background-color: transparent;
+    transform: translateX(-50%);
+    z-index: 1;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    filter: blur(0.1em);
+    opacity: 0.8;
+  
+    &::before {
+      content: '';
+      position: absolute;
+      top: -30px;
+      left : 0;
+      width: 100%;
+      height: 100%;
+      background-image: linear-gradient(to bottom, var(--light-color), transparent);
+      clip-path: polygon(25% 0, 75% 0, 100% 100%, 0% 100%);
+      border-radius: 0 0 1em 1em;
+    }
+  }
+  
+  .menu_item li:hover {
+    color: var(--light-color);
+    text-shadow: 0 2px 8px rgba(255, 234, 177, 0.7);
+  }
+  
