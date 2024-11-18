@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Home() {
     return (
-        <main className={Styles.container_body}>
+        <main className={Styles.linkContainer}>
             <Link href="./typography/" className={Styles.link}>
                 Typography
             </Link>

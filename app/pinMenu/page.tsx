@@ -49,7 +49,7 @@ const MenuBar = ({obj}) => {
                     <ul>
                         {icons.map((item, i) => {
                             return (
-                            <li key={`${item.shape}-${i}`} onMouseOver={() => setSelectedMenu(item.shape)} //onMouseOut={handleMouseOut}
+                            <li key={`${item.shape}-${i}`} onClick={() => setSelectedMenu(item.shape)} onMouseOver={() => setSelectedMenu(item.shape)} //onMouseOut={handleMouseOut} 
                             >
                                 {item.shape}
                                 {item.shape == selectedMenu ? (
