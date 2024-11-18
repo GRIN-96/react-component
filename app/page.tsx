@@ -13,6 +13,9 @@ export default function Home() {
             <Link href="./scroll/" className={Styles.link}>
                 Scroll
             </Link>
+            <Link href="./toggle/" className={Styles.link}>
+                Toggle Button
+            </Link>
         </main>
     );
 }

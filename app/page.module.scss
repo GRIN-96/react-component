@@ -152,3 +152,54 @@
   100% { opacity: 1; height: 8px;}
 }
   /* 마우스 휠 모션 */
+
+  /* 토글 버튼 */
+  .toggle_container {
+    box-sizing: border-box;
+  }
+
+  .toggle_body {
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+    background: black;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .App {
+    font-family: sans-serif;
+    text-align: center;
+  }
+
+  .switch {
+    // width: 160px;
+    width: 320px;
+    height: 100px;
+    background-color: rgba(255, 255, 255, 0.4);
+    display: flex;
+    justify-content: flex-start;
+    border-radius: 40px;
+    padding: 10px;
+    cursor: pointer;
+    div {
+      padding: 6px;
+      text-align: center;
+      z-index: 1;
+    }
+  }
+
+  .switch[data-isOn="true"] {
+    justify-content: flex-end;
+  }
+
+  .handle {
+    width: 150px;
+    height: 70px;
+    margin: auto 0;
+    background-color: white;
+    border-radius: 40px;
+  }
+  /* 토글 버튼 */

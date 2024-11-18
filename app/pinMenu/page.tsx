@@ -34,7 +34,7 @@ const MenuBar = ({obj}) => {
     }, []);
 
     const handleMouseOut = () => {
-        setSelectedMenu(page); // 현재 메뉴로 이동되도록 수정
+        setSelectedMenu(selectedMenu); // 현재 메뉴로 이동되도록 수정
     }
 
 
@@ -49,7 +49,7 @@ const MenuBar = ({obj}) => {
                     <ul>
                         {icons.map((item, i) => {
                             return (
-                            <li key={`${item.shape}-${i}`} onClick={() => setSelectedMenu(item.shape)} onMouseOver={() => setSelectedMenu(item.shape)} //onMouseOut={handleMouseOut} 
+                            <li key={`${item.shape}-${i}`} onMouseOver={() => setSelectedMenu(item.shape)} 
                             >
                                 {item.shape}
                                 {item.shape == selectedMenu ? (
