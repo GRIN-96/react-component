@@ -5,26 +5,42 @@ import { motion } from "framer-motion";
 import Styles from "../page.module.scss";
 
 export default function Toggle() {
-    const [isOn, setIsOn] = useState(false);
-  
-    const toggleSwitch = () => setIsOn(!isOn);
-  
+    const [isDarkmode, setIsDarkmode] = useState(false);
+
+    const toggleSwitch = () => setIsDarkmode(!isDarkmode);
+
     return (
         <main className={Styles.toggle_container}>
             <div className={Styles.toggle_body}>
-                <div className={Styles.switch} data-isOn={isOn} onClick={toggleSwitch}>
-                    <div>Light</div>
-                    <motion.div className={Styles.handle} layout transition={spring} />
-                    <div>Dark</div>
+                <div
+                    className={Styles.switch}
+                    data-darkmode={isDarkmode}
+                    onClick={toggleSwitch}
+                >
+                    <motion.div
+                        className={Styles.handle}
+                        layout
+                        transition={spring}
+                    />
+                    <div className={Styles.innerWrapper}>
+                        <div
+                            data-selected={!isDarkmode}
+                            className={Styles.mode}
+                        >
+                            Light
+                        </div>
+                        <div data-selected={isDarkmode} className={Styles.mode}>
+                            Dark
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>
     );
 }
-  
+
 const spring = {
     type: "spring",
     stiffness: 700,
-    damping: 30
+    damping: 50,
 };
-  

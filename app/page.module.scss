@@ -38,127 +38,169 @@
 
 /* 핀조명 */
 .menu_list {
-    margin:200px auto 0 auto;
-    width:280px;
-    
-    position: relative;
-  }
+    margin: 200px auto 0 auto;
+    width: 280px;
 
-  .menu_item {
+    position: relative;
+}
+
+.menu_item {
     background: gray;
-    border:1px solid gray;
+    border: 1px solid gray;
     border-radius: 70px;
-  }
-  
-  .menu_item ul {
+}
+
+.menu_item ul {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
     justify-content: center;
-  }
-  
-  .menu_item li {
+}
+
+.menu_item li {
     position: relative;
     padding: 1em 1em;
     cursor: pointer;
     font-size: 1.2em;
-    // color: #fff;
     color: black;
-    // text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-  }
-  
-  .underline {
-    // --light-color: #ffeab1;
-    --light-color: #fff;
+    transition: color 0.3s ease-in-out;
+}
+
+.menu_item li:hover {
+    color: var(--light-color);
+    text-shadow: 0 2px 8px rgba(255, 234, 177, 0.7);
+}
+
+.wrap_spotlight + span {
+    transition: color 0.3s ease-in-out;
+    color: white;
+}
+.wrap_spotlight {
     position: absolute;
-    bottom: -0.2em;
+    // bottom: -0.2em;
     left: 10%;
     right: 0;
     width: 80%;
     height: 2em;
+}
+.circle {
+    width: 100%;
+    height: 6px;
+    position: absolute;
+    top: -50%;
+    left: 0;
+    background: white;
+    border-radius: 10px;
+}
+.spotlight {
+    // --light-color: #ffeab1;
+    --light-color: #fff;
+    width: 100%;
+    height: 100%;
     background-color: transparent;
-    transform: translateX(-50%);
     z-index: 1;
     pointer-events: none;
     mix-blend-mode: screen;
     filter: blur(0.1em);
     opacity: 0.8;
-  
-    &::before {
-      content: '';
-      position: absolute;
-      top: -15px;
-      left : 0;
-      width: 100%;
-      height: 100%;
-      background-image: linear-gradient(to bottom, var(--light-color), transparent);
-      clip-path: polygon(25% 0, 75% 0, 100% 100%, 0% 100%);
-      border-radius: 0 0 1em 1em;
-    }
-  }
-  
-  .menu_item li:hover {
-    color: var(--light-color);
-    text-shadow: 0 2px 8px rgba(255, 234, 177, 0.7);
-  }
-  /* 핀조명 */
 
-  
-  /* 마우스 휠 모션 */
+    &::before {
+        content: "";
+        position: absolute;
+        top: -15px;
+        left: 0;
+        width: 100%;
+        height: 120%;
+        background-image: linear-gradient(
+            to bottom,
+            var(--light-color),
+            transparent
+        );
+        clip-path: polygon(20% 0, 80% 0, 100% 100%, 0% 100%);
+        border-radius: 0 0 1em 1em;
+    }
+}
+
+/* 핀조명 */
+
+/* 마우스 휠 모션 */
 .scroll {
     position: relative;
     display: block;
     font-size: 0.933rem;
-    color: rgba(255,255,255,1);
+    color: rgba(255, 255, 255, 1);
     text-decoration: none;
     padding: 10px 10px 10px 40px;
     &::before {
-      display: block;
-      position: absolute;
-      top:-2px;
-      left:0;
-      width: 24px;
-      height: 40px;
-      // border: 2px solid rgba(255,255,255,1);
-      border: 2px solid rgba(108,34,245,1);
-      border-radius: 12px;
-      content:"";
+        display: block;
+        position: absolute;
+        top: -2px;
+        left: 0;
+        width: 24px;
+        height: 40px;
+        // border: 2px solid rgba(255,255,255,1);
+        border: 2px solid rgba(108, 34, 245, 1);
+        border-radius: 12px;
+        content: "";
     }
     &::after {
-      display: block;
-      position: absolute;
-      top:9px;
-      left:11px;
-      width: 2px;
-      height: 8px;
-      background: rgba(108,34,245,1);
-      border-radius: 1px;
-      content:"";
-      animation-name: scroll;
-      animation-duration: 2s;
-      animation-iteration-count: infinite;
-      animation-delay: 2s;
+        display: block;
+        position: absolute;
+        top: 9px;
+        left: 11px;
+        width: 2px;
+        height: 8px;
+        background: rgba(108, 34, 245, 1);
+        border-radius: 1px;
+        content: "";
+        animation-name: scroll;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+        animation-delay: 2s;
     }
 }
 
 @keyframes scroll {
-  0% { opacity: 1; height: 8px;}
-  20% { opacity: 1; height: 8px;}
-  30% { transform: translateY(0); opacity: 1; height: 19px;}
-  40% { opacity: 1;}
-  80% { transform: translateY(19px); opacity: 0; height: 0;}
-  81% { transform: translateY(0); opacity: 0; height: 8px;}
-  100% { opacity: 1; height: 8px;}
+    0% {
+        opacity: 1;
+        height: 8px;
+    }
+    20% {
+        opacity: 1;
+        height: 8px;
+    }
+    30% {
+        transform: translateY(0);
+        opacity: 1;
+        height: 19px;
+    }
+    40% {
+        opacity: 1;
+    }
+    80% {
+        transform: translateY(19px);
+        opacity: 0;
+        height: 0;
+    }
+    81% {
+        transform: translateY(0);
+        opacity: 0;
+        height: 8px;
+    }
+    100% {
+        opacity: 1;
+        height: 8px;
+    }
 }
-  /* 마우스 휠 모션 */
+/* 마우스 휠 모션 */
 
-  /* 토글 버튼 */
-  .toggle_container {
+/* 토글 버튼 */
+.toggle_container {
     box-sizing: border-box;
-  }
+}
 
-  .toggle_body {
+.toggle_body {
     min-height: 100vh;
     padding: 0;
     margin: 0;
@@ -167,39 +209,60 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+}
 
-  .App {
+.App {
     font-family: sans-serif;
     text-align: center;
-  }
+}
 
-  .switch {
+.switch {
     // width: 160px;
     width: 320px;
     height: 100px;
     background-color: rgba(255, 255, 255, 0.4);
     display: flex;
+    position: relative;
     justify-content: flex-start;
-    border-radius: 40px;
+    border-radius: 50px;
     padding: 10px;
     cursor: pointer;
-    div {
-      padding: 6px;
-      text-align: center;
-      z-index: 1;
+}
+.innerWrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    & > div {
+        width: 100%;
+        padding: 0 2rem;
     }
-  }
+    & > div:last-child {
+        text-align: right;
+    }
+}
 
-  .switch[data-isOn="true"] {
+.switch[data-darkmode="true"] {
     justify-content: flex-end;
-  }
+}
+.mode[data-selected] {
+    color: white;
+}
+.mode[data-selected="true"] {
+    font-weight: 900;
+    color: black;
+}
 
-  .handle {
+.handle {
     width: 150px;
     height: 70px;
     margin: auto 0;
     background-color: white;
     border-radius: 40px;
-  }
-  /* 토글 버튼 */
+}
+/* 토글 버튼 */
