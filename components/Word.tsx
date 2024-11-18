@@ -10,7 +10,7 @@ export default function Paragraph({ value }) {
         offset: ["start 0.5", "start 0.25"],
     });
 
-    const words = value ? value.split(" ") : [];
+    const words = value ? value.split("/") : [];
     return (
         <p className={Styles.paragraph} ref={element}>
             {words.map((word, i) => {

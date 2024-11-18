@@ -37,44 +37,6 @@
 /* 버튼 */
 
 /* 핀조명 */
-// .menu_list {
-//     margin:200px auto 0 auto;
-//     width:350px;
-// }
-
-// .menu_item {
-//     background: #000;
-//     border:1px solid #eee;
-
-//     ul{
-//         display: flex
-//     }
-
-//     li{
-//         position:relative;
-//         width:100%;
-//         height:100%;
-//         cursor: pointer;
-//         display:inline-block;
-//         padding:30px;
-//         display:flex;
-//         align-items:center;
-//         justify-content:center;
-//     }
-// }
-
-// .underline {
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     right: 0;
-//     height: 3px;
-//     background: #eee;
-//     vertical-align:bottom;
-// }
-
-/* 핀조명 */
-
 .menu_list {
     margin:200px auto 0 auto;
     width:350px;
@@ -137,4 +99,6 @@
     color: var(--light-color);
     text-shadow: 0 2px 8px rgba(255, 234, 177, 0.7);
   }
+  /* 핀조명 */
+
   
