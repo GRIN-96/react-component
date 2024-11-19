@@ -10,7 +10,7 @@ const paragraph =
 export default function Home() {
     return (
         <main className={Styles.linkContainer}>
-            <Link href="./" className={Styles.link}>
+            <Link href="./" className={Styles.back_button}>
                 뒤로가기
             </Link>
             <div style={{ height: "50vh" }}></div>

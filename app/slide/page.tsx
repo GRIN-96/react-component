@@ -14,7 +14,7 @@ const options = {
     acceleration: true,
     elevation: 50,
     gradients: !$.isTouch,
-    duration: 2000,
+    duration: 1500,
 };
 
 const pages = [
@@ -98,25 +98,14 @@ export default function PageSlide() {
         window.addEventListener("touchstart", handleTouchStart);
         window.addEventListener("touchmove", handleTouchMove);
 
-        // Cleanup 이벤트 리스너 및 `turn.js` 인스턴스 제거
-        return () => {
-            window.removeEventListener("wheel", handleScroll);
-            window.removeEventListener("mousedown", handleMouseDown);
-            window.removeEventListener("touchstart", handleTouchStart);
-            window.removeEventListener("touchmove", handleTouchMove);
-
-            if (bookElement.turn) {
-            bookElement.turn("destroy");
-            }
-        };
     }, []);
 
     return (
         <main className={Styles.linkContainer}>
-            <Link href="./" className={Styles.link}>
+            <Link href="./" className={Styles.back_button}>
                 뒤로가기
             </Link>
-            <div id="book" style={{ width: "800px", height: "600px", margin: "0 auto" }}>
+            <div id="book" style={{ width: "800px", height: "600px", margin: "0 auto", top: "100px"}}>
                 {pages.map((page, index) => (
                     <div key={index} style={{ width: "100%", height: "100%" }}>
                         <img

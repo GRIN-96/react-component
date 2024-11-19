@@ -1,5 +1,7 @@
 /* 텍스트 활성화 */
 .paragraph {
+    position: fixed;
+    margin-top: 30vh;
     font-size: 50px;
     max-width: 1280px;
     padding: 40px;
@@ -211,7 +213,7 @@
 }
 
 .back_button {
-    position: absolute;
+    position: fixed;
     text-decoration: none;
     font-size: 18px; /* 텍스트 크기 */
     // color: white;
