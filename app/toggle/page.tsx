@@ -1,19 +1,25 @@
-"use client";
-import Link from "next/link";
-import React, { useState } from "react";
-import { motion } from "framer-motion";
+"use client"
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import Styles from "../page.module.scss";
-import { FiMoon, FiSun } from "react-icons/fi";
-import { useTheme } from "next-themes";
+import { FiSun, FiMoon } from 'react-icons/fi';
+import Link from 'next/link';
+import { useTheme } from 'next-themes';
 
 export default function Toggle() {
     const {theme, setTheme} = useTheme();
     const [isDarkmode, setIsDarkmode] = useState(theme === 'light' ? false : true);
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        // 클라이언트 렌더링 후 상태 설정
+        setMounted(true);
+    }, []);
 
     const toggleSwitch = () => {
         setIsDarkmode(!isDarkmode);
         handleTheme();
-    }
+    };
 
     const handleTheme = () => {
         if(theme === 'light') {
@@ -21,6 +27,11 @@ export default function Toggle() {
         }else {
             setTheme("light");
         }
+    }
+
+    if (!mounted) {
+        // 서버와의 불일치를 방지
+        return null;
     }
 
     return (
@@ -37,18 +48,18 @@ export default function Toggle() {
                     <motion.div
                         className={Styles.handle}
                         layout
-                        transition={spring}
+                        transition={{ type: "spring", stiffness: 700, damping: 50 }}
                     />
                     <div className={Styles.innerWrapper}>
                         <div
                             data-selected={!isDarkmode}
                             className={Styles.mode}
-                            >
-                            <FiSun/>    
+                        >
+                            <FiSun />
                             <span>Light</span>
                         </div>
                         <div data-selected={isDarkmode} className={Styles.mode}>
-                            <FiMoon/>
+                            <FiMoon />
                             <span>Dark</span>
                         </div>
                     </div>
@@ -57,9 +68,3 @@ export default function Toggle() {
         </main>
     );
 }
-
-const spring = {
-    type: "spring",
-    stiffness: 700,
-    damping: 50,
-};
