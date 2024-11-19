@@ -10,6 +10,10 @@ export default function RootLayout({ children }: { children: string }) {
     return (
         <html lang="en" suppressHydrationWarning>
             <body>
+                <link
+                    rel="stylesheet"
+                    href="https://cdnjs.cloudflare.com/ajax/libs/turn.js/4.1.0/turn.min.css"
+                />
                 <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
                     {children}
                 </ThemeProvider>

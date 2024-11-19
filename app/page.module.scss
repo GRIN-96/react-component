@@ -31,8 +31,8 @@
 .link {
     text-decoration: none;
     font-size: 18px; /* 텍스트 크기 */
-    // color: white;
     padding: 15px 0; /* 위아래 패딩 */
+    width: 8%;
 }
 /* 버튼 */
 
@@ -298,3 +298,25 @@
     border-radius: 40px;
 }
 /* 토글 버튼 */
+
+
+/* 페이지 넘김 */
+.magazine {
+  margin: 0 auto;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.magazine .page {
+  height: 100%;
+}
+
+.magazine .page img {
+  max-width: 100%;
+  height: 100%;
+}
+/* 페이지 넘김 */

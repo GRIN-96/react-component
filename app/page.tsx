@@ -16,6 +16,9 @@ export default function Home() {
             <Link href="./toggle/" className={Styles.link}>
                 Toggle Button
             </Link>
+            <Link href="./slide/" className={Styles.link}>
+                Slide Page
+            </Link>
         </main>
     );
 }
