@@ -31,7 +31,7 @@
 .link {
     text-decoration: none;
     font-size: 18px; /* 텍스트 크기 */
-    color: white;
+    // color: white;
     padding: 15px 0; /* 위아래 패딩 */
 }
 /* 버튼 */
@@ -129,7 +129,6 @@
     position: relative;
     display: block;
     font-size: 0.933rem;
-    color: rgba(255, 255, 255, 1);
     text-decoration: none;
     padding: 10px 10px 10px 40px;
     &::before {
@@ -204,11 +203,19 @@
     min-height: 100vh;
     padding: 0;
     margin: 0;
-    background: black;
+    // background: black;
     background-repeat: no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.back_button {
+    position: absolute;
+    text-decoration: none;
+    font-size: 18px; /* 텍스트 크기 */
+    // color: white;
+    margin: 35px 20px;
 }
 
 .App {
@@ -219,15 +226,29 @@
 .switch {
     // width: 160px;
     width: 320px;
-    height: 100px;
-    background-color: rgba(255, 255, 255, 0.4);
+    height: 65px;
+    background-color: rgba(85, 81, 81, 0.4);
     display: flex;
     position: relative;
     justify-content: flex-start;
-    border-radius: 50px;
+    border-radius: 30px;
     padding: 10px;
     cursor: pointer;
 }
+
+.switch_darkMode {
+  // width: 160px;
+  width: 320px;
+  height: 65px;
+  background-color: rgba(255, 255, 255, 0.4);
+  display: flex;
+  position: relative;
+  justify-content: flex-start;
+  border-radius: 30px;
+  padding: 10px;
+  cursor: pointer;
+}
+
 .innerWrapper {
     position: absolute;
     top: 0;
@@ -247,20 +268,31 @@
     }
 }
 
-.switch[data-darkmode="true"] {
+.switch[data-darkmode="true"], .switch_darkMode[data-darkmode="true"] {
     justify-content: flex-end;
 }
+
+.mode {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 3px;
+    align-items: center;
+}
+
 .mode[data-selected] {
-    color: white;
+    color: black;
+    font-size: 20px;
 }
 .mode[data-selected="true"] {
     font-weight: 900;
     color: black;
+    transition: font-weight 0.05s ease-in-out;
 }
 
 .handle {
-    width: 150px;
-    height: 70px;
+    width: 140px;
+    height: 45px;
     margin: auto 0;
     background-color: white;
     border-radius: 40px;
