@@ -34,7 +34,7 @@
     text-decoration: none;
     font-size: 18px; /* 텍스트 크기 */
     padding: 15px 0; /* 위아래 패딩 */
-    width: 8%;
+    width: 120px;
 }
 /* 버튼 */
 
@@ -239,16 +239,16 @@
 }
 
 .switch_darkMode {
-  // width: 160px;
-  width: 320px;
-  height: 65px;
-  background-color: rgba(255, 255, 255, 0.4);
-  display: flex;
-  position: relative;
-  justify-content: flex-start;
-  border-radius: 30px;
-  padding: 10px;
-  cursor: pointer;
+    // width: 160px;
+    width: 320px;
+    height: 65px;
+    background-color: rgba(255, 255, 255, 0.4);
+    display: flex;
+    position: relative;
+    justify-content: flex-start;
+    border-radius: 30px;
+    padding: 10px;
+    cursor: pointer;
 }
 
 .innerWrapper {
@@ -270,7 +270,8 @@
     }
 }
 
-.switch[data-darkmode="true"], .switch_darkMode[data-darkmode="true"] {
+.switch[data-darkmode="true"],
+.switch_darkMode[data-darkmode="true"] {
     justify-content: flex-end;
 }
 
@@ -301,24 +302,24 @@
 }
 /* 토글 버튼 */
 
-
 /* 페이지 넘김 */
 .magazine {
-  margin: 0 auto;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+    margin: 0 auto;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .magazine .page {
-  height: 100%;
+    height: 100%;
 }
 
 .magazine .page img {
-  max-width: 100%;
-  height: 100%;
+    max-width: 100%;
+    height: 100%;
 }
+
 /* 페이지 넘김 */
