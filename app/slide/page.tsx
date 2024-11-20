@@ -26,13 +26,13 @@ type SizeType = "fixed" | "stretch";
 
 const options = {
     startPage: 0,
-    size: "stretch" as SizeType,
+    size: "fixed" as SizeType,
     minWidth: 0,
     maxWidth: 0,
     minHeight: 0,
     maxHeight: 0,
     drawShadow: true,
-    flippingTime: 100,
+    flippingTime: 500,
     usePortrait: true,
     startZIndex: 0,
     autoSize: true,
@@ -50,7 +50,6 @@ export default function PageSlide() {
     return (
         <main
             className={Styles.linkContainer}
-            style={{ width: "1000px", height: "1000px" }}
         >
             <Link href="./" className={Styles.back_button}>
                 뒤로가기
@@ -60,7 +59,7 @@ export default function PageSlide() {
                 width={1000}
                 height={500}
                 className={""}
-                style={{}}
+                style={{margin: "auto auto",  top: '60px'}}
                 {...options}
             >
                 {pages.map((page, index) => (
@@ -72,7 +71,7 @@ export default function PageSlide() {
                         <img
                             src={page}
                             alt={`Page ${index + 1}`}
-                            style={{ width: "100%", height: "100%" }}
+                            style={{ width: "100%", height: "100%"}}
                         />
                     </div>
                 ))}

@@ -14,7 +14,6 @@ export default function Home() {
                 뒤로가기
             </Link>
             <div style={{ height: "50vh" }}></div>
-            {/* <Paragraph value={paragraph} /> */}
             <Word value={paragraph} />
             <div style={{ height: "150vh" }}></div>
         </main>

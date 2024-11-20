@@ -17,7 +17,13 @@ export default function Home() {
                 Toggle Button
             </Link>
             <Link href="./slide/" className={Styles.link}>
+                Slide Page-flip
+            </Link>
+            <Link href="./slide2/" className={Styles.link}>
                 Slide Page
+            </Link>
+            <Link href="./scrollPage/" className={Styles.link}>
+                Sliding Page
             </Link>
         </main>
     );
