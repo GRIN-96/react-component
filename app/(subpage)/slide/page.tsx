@@ -2,7 +2,7 @@
 
 import React, { useEffect } from "react";
 import Link from "next/link";
-import Styles from "../../app/page.module.scss";
+import Styles from "../../page.module.scss";
 import HTMLFlipBook from "react-pageflip";
 
 // const pages = [
@@ -48,9 +48,7 @@ const options = {
 
 export default function PageSlide() {
     return (
-        <main
-            className={Styles.linkContainer}
-        >
+        <main className={Styles.linkContainer}>
             <Link href="./" className={Styles.back_button}>
                 뒤로가기
             </Link>
@@ -59,7 +57,7 @@ export default function PageSlide() {
                 width={1000}
                 height={500}
                 className={""}
-                style={{margin: "auto auto",  top: '60px'}}
+                style={{ margin: "auto auto", top: "60px" }}
                 {...options}
             >
                 {pages.map((page, index) => (
@@ -71,7 +69,7 @@ export default function PageSlide() {
                         <img
                             src={page}
                             alt={`Page ${index + 1}`}
-                            style={{ width: "100%", height: "100%"}}
+                            style={{ width: "100%", height: "100%" }}
                         />
                     </div>
                 ))}

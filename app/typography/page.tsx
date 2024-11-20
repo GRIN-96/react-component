@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Word from "../../components/Word";
-import Styles from "../page.module.scss";
+import Word from "../(subpage)/scrollPage/components/Paragraph";
+import Styles from "../../page.module.scss";
 
 // const paragraph =
 //     "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.";
@@ -9,13 +9,10 @@ const paragraph =
 
 export default function Home() {
     return (
-        <main className={Styles.linkContainer}>
-            <Link href="./" className={Styles.back_button}>
-                뒤로가기
-            </Link>
+        <>
             <div style={{ height: "50vh" }}></div>
             <Word value={paragraph} />
             <div style={{ height: "150vh" }}></div>
-        </main>
+        </>
     );
 }

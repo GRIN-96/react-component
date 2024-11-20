@@ -2,7 +2,7 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import Styles from "../page.module.scss";
+import Styles from "../../page.module.scss";
 import { FiHome, FiMapPin, FiFolder, FiLock } from "react-icons/fi";
 
 const icons = [

@@ -1,14 +1,16 @@
-"use client"
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import Styles from "../page.module.scss";
-import { FiSun, FiMoon } from 'react-icons/fi';
-import Link from 'next/link';
-import { useTheme } from 'next-themes';
+"use client";
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import Styles from "../../page.module.scss";
+import { FiSun, FiMoon } from "react-icons/fi";
+import Link from "next/link";
+import { useTheme } from "next-themes";
 
 export default function Toggle() {
-    const {theme, setTheme} = useTheme();
-    const [isDarkmode, setIsDarkmode] = useState(theme === 'light' ? false : true);
+    const { theme, setTheme } = useTheme();
+    const [isDarkmode, setIsDarkmode] = useState(
+        theme === "light" ? false : true
+    );
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
@@ -22,12 +24,12 @@ export default function Toggle() {
     };
 
     const handleTheme = () => {
-        if(theme === 'light') {
+        if (theme === "light") {
             setTheme("dark");
-        }else {
+        } else {
             setTheme("light");
         }
-    }
+    };
 
     if (!mounted) {
         // 서버와의 불일치를 방지
@@ -41,14 +43,20 @@ export default function Toggle() {
             </Link>
             <div className={Styles.toggle_body}>
                 <div
-                    className={isDarkmode ? Styles.switch_darkMode : Styles.switch}
+                    className={
+                        isDarkmode ? Styles.switch_darkMode : Styles.switch
+                    }
                     data-darkmode={isDarkmode}
                     onClick={toggleSwitch}
                 >
                     <motion.div
                         className={Styles.handle}
                         layout
-                        transition={{ type: "spring", stiffness: 700, damping: 50 }}
+                        transition={{
+                            type: "spring",
+                            stiffness: 700,
+                            damping: 50,
+                        }}
                     />
                     <div className={Styles.innerWrapper}>
                         <div
