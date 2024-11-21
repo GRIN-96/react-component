@@ -15,9 +15,6 @@ export default function Paragraph({ value }) {
         target: element,
     });
 
-    useMotionValueEvent(scrollYProgress, "change", (val) => {
-        console.log(val);
-    });
     const words = value ? value.split("/") : [];
     return (
         <section
@@ -25,7 +22,7 @@ export default function Paragraph({ value }) {
             className={Styles.wrapParagraph}
             style={{ height: "200vh" }}
         >
-            <p data-tmp className={Styles.paragraph}>
+            <p className={Styles.paragraph}>
                 {words.map((word, i) => {
                     const start = i / words.length;
                     const end = start + 1 / words.length;
