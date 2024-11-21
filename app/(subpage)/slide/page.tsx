@@ -49,10 +49,6 @@ const options = {
 export default function PageSlide() {
     return (
         <main className={Styles.linkContainer}>
-            <Link href="./" className={Styles.back_button}>
-                뒤로가기
-            </Link>
-
             <HTMLFlipBook
                 width={1000}
                 height={500}

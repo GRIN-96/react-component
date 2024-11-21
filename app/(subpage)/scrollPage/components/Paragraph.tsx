@@ -1,13 +1,12 @@
 "use client";
-import React, { useRef } from "react";
-import Styles from "../../../page.module.scss";
 import {
-    useScroll,
     motion,
     MotionValue,
-    useTransform,
-    useMotionValueEvent,
+    useScroll,
+    useTransform
 } from "framer-motion";
+import { useRef } from "react";
+import Styles from "../../../page.module.scss";
 
 export default function Paragraph({ value }) {
     const element = useRef(null);
@@ -26,7 +25,6 @@ export default function Paragraph({ value }) {
                 {words.map((word, i) => {
                     const start = i / words.length;
                     const end = start + 1 / words.length;
-                    console.log(start, end);
                     return (
                         <Word
                             key={i}

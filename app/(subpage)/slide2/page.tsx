@@ -25,9 +25,6 @@ const pages = [
 export default function ScrollAnimation() {
     return (
         <main className={Styles.linkContainer}>
-            <Link href="./" className={Styles.back_button}>
-                뒤로가기
-            </Link>
             <div style={{ height: "150vh" }}></div>
             <div style={{ height: "150vh" }}></div>
             <Wrapper>

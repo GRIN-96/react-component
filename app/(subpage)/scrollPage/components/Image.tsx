@@ -8,7 +8,7 @@ export default function Images({ text, url }) {
     const y = useTransform(scrollYProgress, [0, 1], [-300, 350]);
 
     return (
-        <section className={Styles.section}>
+        <section>
             <div ref={ref}>
                 <img src={url} alt={text} />
             </div>

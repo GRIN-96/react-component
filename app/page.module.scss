@@ -4,7 +4,6 @@
 .paragraph {
     position: sticky;
     top:30%;
-    // margin-top: 20vh;
     font-size: 50px;
     max-width: 1280px;
     padding: 40px;
@@ -33,11 +32,21 @@
     margin-top: 20px; /* 상단 여백 */
 }
 
+.linkContainer > section {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    scroll-snap-align: center;
+    perspective: 500px;
+}
+
 .link {
     text-decoration: none;
     font-size: 18px; /* 텍스트 크기 */
     padding: 15px 0; /* 위아래 패딩 */
-    width: 120px;
+    width: 200px;
 }
 /* 버튼 */
 
@@ -208,15 +217,15 @@
     min-height: 100vh;
     padding: 0;
     margin: 0;
-    // background: black;
     background-repeat: no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.back_button {
+.header_button_layout {
     position: fixed;
+    display: flex;
     text-decoration: none;
     font-size: 18px; /* 텍스트 크기 */
     // color: white;
@@ -231,8 +240,8 @@
 
 .switch {
     // width: 160px;
-    width: 320px;
-    height: 65px;
+    width: 280px;
+    height: 45px;
     background-color: rgba(85, 81, 81, 0.4);
     display: flex;
     position: relative;
@@ -244,8 +253,8 @@
 
 .switch_darkMode {
     // width: 160px;
-    width: 320px;
-    height: 65px;
+    width: 280px;
+    height: 45px;
     background-color: rgba(255, 255, 255, 0.4);
     display: flex;
     position: relative;
@@ -289,17 +298,17 @@
 
 .mode[data-selected] {
     color: black;
-    font-size: 20px;
+    font-size: 14px;
 }
 .mode[data-selected="true"] {
-    font-weight: 900;
+    font-weight: bold;
     color: black;
     transition: font-weight 0.05s ease-in-out;
 }
 
 .handle {
-    width: 140px;
-    height: 45px;
+    width: 130px;
+    height: 27px;
     margin: auto 0;
     background-color: white;
     border-radius: 40px;
@@ -329,26 +338,41 @@
 /* 페이지 넘김 */
 
 /* 스크롤 페이지 */
-.section {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    scroll-snap-align: center;
-    perspective: 500px;
+// 1. Main
+.mainSection {
+    .title {
+        position:absolute;
+        left: 50%;
+        top: 12rem;
+        font-weight: 600;
+        transform: translate(-50%, -50%);
+    }
+    .introducion {
+        position:absolute;
+        white-space: pre-wrap;
+        top: 35%;
+        left: 15%;
+        width: 100%;
+        .services {
+            font-size: 1.3rem;
+            margin-top: 50px;
+        }
+    }
+    .wrapImage {
+        position:absolute;
+        width: 20rem;
+        height: 25rem;
+        right: 5%;
+        top: 50%;
+        // border: solid burlywood;
+        transform: translate(-50%, -50%);
+    }
+    .wrapImage > img {
+        margin: 50% auto;
+    }
 }
 
-.section > div {
-    width: 300px;
-    height: 450px;
-    position: relative;
-    max-height: 90vh;
-    margin: 20px;
-    overflow: hidden;
-    border-radius: 5px;
-}
-
+// 2. Typography
 .wrapParagraph {
     display: flex;
     justify-content: center;
@@ -357,5 +381,82 @@
     scroll-snap-align: center;
     perspective: 500px;
 }
+
+// 3. Scroll Icon
+.scroll_icon {
+    position: fixed;
+    display: block;
+    font-size: 0.933rem;
+    text-decoration: none;
+    bottom: 15%;
+    right: 15%;
+    &::before {
+        display: block;
+        position: absolute;
+        top: -2px;
+        left: 0;
+        width: 24px;
+        height: 40px;
+        // border: 2px solid rgba(255,255,255,1);
+        border: 3px solid rgba(98, 157, 16, 1);
+        border-radius: 12px;
+        content: "";
+    }
+    &::after {
+        display: block;
+        position: absolute;
+        top: 9px;
+        left: 11px;
+        width: 3px;
+        height: 8px;
+        background: rgba(98, 157, 16, 1);
+        border-radius: 3px;
+        content: "";
+        animation-name: scroll;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+        animation-delay: 2s;
+    }
+}
+
+// 4. Dark mode switch button
+.switch_container {
+    position: fixed;
+    top: 5%;
+    right: 3%;
+    z-index: 999;
+}
+
+.mini_right_button {
+    position: relative;
+    height: 2.8rem;
+    width: 2.8rem;
+    background-color: rgba(85, 81, 81, 0.4);
+    border-radius: 1.4rem;
+    align-items: center;
+
+    p {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.mini_dark_button {
+    position: relative;
+    height: 2.8rem;
+    width: 2.8rem;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 1.4rem;
+
+    p {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
 
 /* 스크롤 페이지 */

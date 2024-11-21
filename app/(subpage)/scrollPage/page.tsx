@@ -2,8 +2,8 @@
 import { useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import Paragraph from "@/app/(subpage)/scrollPage/components/Paragraph";
+import Main from "@/app/(subpage)/scrollPage/components/Main";
 import Images from "./components/Image";
-import Styles from "../../page.module.scss"
 
 const data = [
     {
@@ -67,10 +67,9 @@ export default function ScrollPage() {
     const y = useTransform(scrollYProgress, [0, 1], [-300, 350]);
     return (
         <>
-            <div
-                className={Styles.snap_container}
-            >
-                <Paragraph value={paragraph} />
+            <div>
+                <Main/>  {/* Main */}
+                <Paragraph value={paragraph} />  {/* Typography */}
                 {data.map((img) => (
                     <Images key={img.id} text={img.text} url={img.url} />
                 ))}

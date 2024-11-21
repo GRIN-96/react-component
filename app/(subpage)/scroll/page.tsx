@@ -7,10 +7,6 @@ import Styles from "../../page.module.scss";
 const Scroll = ({ obj }) => {
     return (
         <main className={Styles.linkContainer}>
-            <Link href="./" className={Styles.back_button}>
-                뒤로가기
-            </Link>
-
             <div className={Styles.menu_list}>
                 <a className={Styles.scroll} href="#">
                     Read more

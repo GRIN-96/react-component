@@ -38,9 +38,6 @@ export default function Toggle() {
 
     return (
         <main className={Styles.toggle_container}>
-            <Link href="./" className={Styles.back_button}>
-                뒤로가기
-            </Link>
             <div className={Styles.toggle_body}>
                 <div
                     className={

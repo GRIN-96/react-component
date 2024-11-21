@@ -37,10 +37,6 @@ const MenuBar = ({ obj }) => {
 
     return (
         <main className={Styles.linkContainer}>
-            <Link href="./" className={Styles.back_button}>
-                뒤로가기
-            </Link>
-
             <motion.div className={Styles.menu_list}>
                 <div className={Styles.menu_item}>
                     <ul>
