@@ -1,4 +1,5 @@
 "use client";
+
 import { useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import Paragraph from "@/app/(subpage)/scrollPage/components/Paragraph";
@@ -28,36 +29,6 @@ const data = [
         text: "Vietnam",
         url: "https://images.pexels.com/photos/18707547/pexels-photo-18707547/free-photo-of-a-curved-road-in-the-mountains-with-a-motorcycle.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
     },
-    // {
-    //     id: 5,
-    //     text: "page1",
-    //     url: "https://raw.github.com/blasten/turn.js/master/demos/magazine/pages/01.jpg",
-    // },
-    // {
-    //     id: 6,
-    //     text: "page2",
-    //     url: "https://raw.github.com/blasten/turn.js/master/demos/magazine/pages/02.jpg",
-    // },
-    // {
-    //     id: 7,
-    //     text: "page3",
-    //     url: "https://raw.github.com/blasten/turn.js/master/demos/magazine/pages/03.jpg",
-    // },
-    // {
-    //     id: 8,
-    //     text: "page4",
-    //     url: "https://raw.github.com/blasten/turn.js/master/demos/magazine/pages/04.jpg",
-    // },
-    // {
-    //     id: 9,
-    //     text: "page5",
-    //     url: "https://raw.github.com/blasten/turn.js/master/demos/magazine/pages/05.jpg",
-    // },
-    // {
-    //     id: 10,
-    //     text: "page6",
-    //     url: "https://raw.github.com/blasten/turn.js/master/demos/magazine/pages/06.jpg",
-    // },
 ];
 
 const paragraph =
@@ -73,9 +44,8 @@ export default function ScrollPage() {
     const serviceRef = useRef<HTMLDivElement | null>(null);
     const footerRef = useRef<HTMLDivElement | null>(null);
 
-    const [activeSection, setActiveSection] = useState<string>(""); // 현재 활성화된 섹션
+    const [activeSection, setActiveSection] = useState<string>("");
 
-    // GNB 스크롤 이동 이벤트
     const scrollToSection = (sectionRef: React.RefObject<HTMLDivElement>) => {
         if (sectionRef.current) {
             window.scrollTo({
@@ -85,7 +55,6 @@ export default function ScrollPage() {
         }
     };
 
-    // 스크롤 이벤트 핸들러
     useEffect(() => {
         const handleScroll = () => {
             const sections = [
@@ -95,17 +64,17 @@ export default function ScrollPage() {
                 { name: "footerRef", ref: footerRef },
             ];
 
-            // 현재 스크롤 위치 확인
             const currentSection = sections.find(
                 (section) =>
                     section.ref.current &&
-                    section.ref.current.offsetTop <= window.scrollY + 200 && // 오프셋 추가
-                    section.ref.current.offsetTop + section.ref.current.offsetHeight >
+                    section.ref.current.offsetTop <= window.scrollY + 200 &&
+                    section.ref.current.offsetTop +
+                        section.ref.current.offsetHeight >
                         window.scrollY + 200
             );
 
             if (currentSection) {
-                setActiveSection(currentSection.name); // 활성화된 섹션 업데이트
+                setActiveSection(currentSection.name);
             }
         };
 
@@ -116,26 +85,34 @@ export default function ScrollPage() {
     return (
         <>
             <div>
-                <Main ref={mainRef}/>  {/* Main */}
-                <Paragraph 
-                    value={paragraph} 
-                    ref={introduceRef}
-                />  {/* Typography */}
-                {data.map((img) => (
-                    <Images 
-                        key={img.id} 
-                        text={img.text} 
-                        url={img.url}
-                    />
-                ))}
-                <Footer ref={footerRef}/>
-                <MenuBar 
+                <Main ref={mainRef} /> {/* Main */}
+                <Paragraph value={paragraph} ref={introduceRef} />{" "}
+                {/* Typography */}
+                <section
+                    ref={serviceRef}
+                    style={{
+                        display: "flex",
+                        overflowX: "hidden", // 가로 스크롤 활성화
+                        scrollSnapType: "x mandatory", // 스냅 스크롤 적용
+                        gap: "16px",
+                        padding: "16px",
+                    }}
+                >
+                    {data.map((img) => (
+                        <Images key={img.id} text={img.text} url={img.url} />
+                    ))}
+                </section>
+                <Footer ref={footerRef} />
+                <MenuBar
                     activeSection={activeSection}
                     onNavigate={(section) => {
                         if (section === "mainRef") scrollToSection(mainRef);
-                        else if (section === "introduceRef") scrollToSection(introduceRef);
-                        else if (section === "serviceRef") scrollToSection(serviceRef);
-                        else if (section === "footerRef") scrollToSection(footerRef);
+                        else if (section === "introduceRef")
+                            scrollToSection(introduceRef);
+                        else if (section === "serviceRef")
+                            scrollToSection(serviceRef);
+                        else if (section === "footerRef")
+                            scrollToSection(footerRef);
                     }}
                 />
             </div>

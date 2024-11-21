@@ -3,43 +3,67 @@
 import { useRef, useState, MouseEvent } from "react";
 import { motion } from "framer-motion";
 
-type FramerProps = {
+type MagneticButtonProps = {
     children: React.ReactNode;
+    width?: number;
+    height?: number;
+    distance?: number;
+    onClick?: () => void; // onClick 이벤트 추가
 };
 
-export default function Framer({ children }: FramerProps) {
-    const ref = useRef<HTMLDivElement | null>(null); // null 초기화
+export default function MagneticButton({
+    children,
+    width = 200,
+    height = 60,
+    distance = 0.3,
+    onClick, // onClick 받기
+}: MagneticButtonProps) {
+    const ref = useRef<HTMLDivElement | null>(null);
     const [position, setPosition] = useState({ x: 0, y: 0 });
 
     const handleMouse = (e: MouseEvent<HTMLDivElement>) => {
-        if (!ref.current) return; // ref가 null인지 확인
+        if (!ref.current) return;
 
-        const { clientX, clientY } = e; // 마우스 위치
-        const { height, width, left, top } =
-            ref.current.getBoundingClientRect(); // 버튼 위치 및 크기
-        const middleX = clientX - (left + width / 2); // 마우스와 버튼 중심의 X 거리
-        const middleY = clientY - (top + height / 2); // 마우스와 버튼 중심의 Y 거리
-        setPosition({ x: middleX, y: middleY });
+        const { clientX, clientY } = e;
+        const { left, top, width, height } =
+            ref.current.getBoundingClientRect();
+        const middleX = clientX - (left + width / 2);
+        const middleY = clientY - (top + height / 2);
+        setPosition({ x: middleX * distance, y: middleY * distance });
     };
 
-    const reset = () => {
-        setPosition({ x: 0, y: 0 }); // 버튼 초기 위치로 복귀
+    const resetPosition = () => {
+        setPosition({ x: 0, y: 0 });
     };
 
     const { x, y } = position;
 
     return (
         <motion.div
-            style={{ position: "relative" }} // 버튼의 상대 위치 설정
             ref={ref}
+            style={{
+                width,
+                height,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                backgroundColor: "#4f46e5",
+                color: "#fff",
+                borderRadius: "12px",
+                cursor: "pointer",
+                position: "relative",
+                fontSize: "16px",
+                fontWeight: "bold",
+                overflow: "hidden",
+            }}
             onMouseMove={handleMouse}
-            onMouseLeave={reset}
-            animate={{ x, y }} // 애니메이션 위치 설정
+            onMouseLeave={resetPosition}
+            onClick={onClick} // 클릭 이벤트 추가
+            animate={{ x, y }}
             transition={{
                 type: "spring",
-                stiffness: 150, // 스프링 강도
-                damping: 15, // 감쇠 비율
-                mass: 0.1, // 질량
+                stiffness: 300,
+                damping: 20,
             }}
         >
             {children}
