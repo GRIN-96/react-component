@@ -1,59 +1,45 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, useMotionValue, useSpring } from 'framer-motion';
+import { useRef, useState, MouseEvent } from "react";
+import { motion } from "framer-motion";
 
-const SPRING_CONFIG = { damping: 100, stiffness: 400 };
-
-type MagneticButtonType = {
-  children: React.ReactNode;
-  distance?: number;
+type FramerProps = {
+    children: React.ReactNode;
 };
 
-export default function MagneticButton({ children, distance = 0.6 }: MagneticButtonType) {
-    const [isHovered, setIsHovered] = useState(false);
-    const ref = useRef<HTMLDivElement>(null);
+export default function Framer({ children }: FramerProps) {
+    const ref = useRef<HTMLDivElement | null>(null); // null 초기화
+    const [position, setPosition] = useState({ x: 0, y: 0 });
 
-    const x = useMotionValue(0);
-    const y = useMotionValue(0);
+    const handleMouse = (e: MouseEvent<HTMLDivElement>) => {
+        if (!ref.current) return; // ref가 null인지 확인
 
-    const springX = useSpring(x, SPRING_CONFIG);
-    const springY = useSpring(y, SPRING_CONFIG);
+        const { clientX, clientY } = e; // 마우스 위치
+        const { height, width, left, top } =
+            ref.current.getBoundingClientRect(); // 버튼 위치 및 크기
+        const middleX = clientX - (left + width / 2); // 마우스와 버튼 중심의 X 거리
+        const middleY = clientY - (top + height / 2); // 마우스와 버튼 중심의 Y 거리
+        setPosition({ x: middleX, y: middleY });
+    };
 
-    useEffect(() => {
-        const calculateDistance = (e: MouseEvent) => {
-        if (ref.current) {
-            const rect = ref.current.getBoundingClientRect();
-            const centerX = rect.left + rect.width / 2;
-            const centerY = rect.top + rect.height / 2;
-            const distanceX = e.clientX - centerX;
-            const distanceY = e.clientY - centerY;
+    const reset = () => {
+        setPosition({ x: 0, y: 0 }); // 버튼 초기 위치로 복귀
+    };
 
-            if (isHovered) {
-            x.set(distanceX * distance);
-            y.set(distanceY * distance);
-            } else {
-            x.set(0);
-            y.set(0);
-            }
-        }
-        };
-
-        document.addEventListener('mousemove', calculateDistance);
-
-        return () => {
-        document.removeEventListener('mousemove', calculateDistance);
-        };
-    }, [ref, isHovered]);
+    const { x, y } = position;
 
     return (
         <motion.div
+            style={{ position: "relative" }} // 버튼의 상대 위치 설정
             ref={ref}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-            style={{
-                x: springX,
-                y: springY
+            onMouseMove={handleMouse}
+            onMouseLeave={reset}
+            animate={{ x, y }} // 애니메이션 위치 설정
+            transition={{
+                type: "spring",
+                stiffness: 150, // 스프링 강도
+                damping: 15, // 감쇠 비율
+                mass: 0.1, // 질량
             }}
         >
             {children}

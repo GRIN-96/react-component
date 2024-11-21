@@ -13,6 +13,12 @@ body {
     color: var(--foreground);
     background: var(--background);
     font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden; /* 가로 스크롤을 완전히 막기 */
+    scrollbar-width: none; /* Firefox 스크롤바 숨기기 */
+}
+
+body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari 스크롤바 숨기기 */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -52,19 +58,19 @@ section > div {
     height: 100vh;
     display: flex;
     flex-wrap: nowrap;
-  }
-  
-  .firstContainer {
+}
+
+.firstContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
     background: yellow;
-  }
-  
-  .lastContainer {
+}
+
+.lastContainer {
     display: flex;
     height: 100vh;
     background: yellow;
-  }
+}
