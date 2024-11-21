@@ -6,9 +6,9 @@ const introducion = "Data-Driven Marketing\nProven by Result";
 const services = "디지털 광고/SEO/Web 개발/디자인/영상";
 const img_src = "https://static.wanted.co.kr/images/wdes/0_5.d77b85f2.png";
 
-export default function Main() {
+export default function Main({ref}) {
     return(
-        <section className={Styles.mainSection}>
+        <section className={Styles.mainSection} ref={ref}>
             <motion.h1 
                 className={Styles.title}
                 initial= {{ y: '-1000', opacity: 0 }}

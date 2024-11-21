@@ -458,5 +458,13 @@
     }
 }
 
+// 5. pin sportlight GNB
+.menu_bar {
+    position: fixed;
+    bottom: -5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+}
 
 /* 스크롤 페이지 */

@@ -8,16 +8,15 @@ import {
 import { useRef } from "react";
 import Styles from "../../../page.module.scss";
 
-export default function Paragraph({ value }) {
-    const element = useRef(null);
+export default function Paragraph({ value, ref }) {
     const { scrollYProgress } = useScroll({
-        target: element,
+        target: ref,
     });
 
     const words = value ? value.split("/") : [];
     return (
         <section
-            ref={element}
+            ref={ref}
             className={Styles.wrapParagraph}
             style={{ height: "200vh" }}
         >

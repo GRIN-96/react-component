@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
 
 import Styles from "../page.module.scss";
-import Link from "next/link";
 import ModeSwitch from "./scrollPage/components/ModeSwitch";
 
 export default function layout({ children }: { children: ReactNode }) {
