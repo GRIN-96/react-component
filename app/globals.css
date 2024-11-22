@@ -37,7 +37,7 @@ section {
     perspective: 500px;
 }
 
-section > div {
+/* section > div {
     width: 300px;
     height: 450px;
     position: relative;
@@ -45,4 +45,4 @@ section > div {
     margin: 20px;
     overflow: hidden;
     border-radius: 5px;
-}
+} */

@@ -6,8 +6,6 @@ export default function Footer({ ref }) {
             <section ref={ref}
                 style={{
                     // backgroundColor: "gray"
-                    position: "relative",
-                    gap: "2rem",
                 }}
             >
                 <MagneticButton 
