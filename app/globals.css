@@ -46,26 +46,3 @@ section > div {
     overflow: hidden;
     border-radius: 5px;
 }
-
-/* TEMP CODE */
-.container {
-    width: 400%;
-    height: 100vh;
-    display: flex;
-    flex-wrap: nowrap;
-}
-
-.firstContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: yellow;
-}
-
-.lastContainer {
-    display: flex;
-    height: 100vh;
-    background: yellow;
-}

@@ -99,7 +99,7 @@ export default function ScrollPage() {
                     }}
                 >
                     {data.map((img) => (
-                        <Images key={img.id} text={img.text} url={img.url} />
+                        <Images key={img.id} text={img.text} url={img.url}/>
                     ))}
                 </section>
                 <Footer ref={footerRef} />

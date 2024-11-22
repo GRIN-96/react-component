@@ -25,9 +25,6 @@ export default function Home() {
             <Link href="./scrollPage/" className={Styles.link}>
                 Sliding Page
             </Link>
-            <Link href="./horizontal/" className={Styles.link}>
-                Horizontal Sliding Page
-            </Link>
         </main>
     );
 }
