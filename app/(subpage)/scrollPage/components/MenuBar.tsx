@@ -8,24 +8,45 @@ import { GrInfo } from "react-icons/gr";
 import Styles from "@/app/page.module.scss";
 import Link from "next/link";
 
-const icons = [
-    {
-        shape: <FiHome />,
-        menu: "main",
+type MenuType = "main" | "introduce" | "service" | "footer";
+
+// const icons = [
+//     {
+//         shape: <FiHome />,
+//         menu: "main",
+//     },
+//     {
+//         shape: <FaBookOpen />,
+//         menu: "introduce",
+//     },
+//     {
+//         shape: <AiFillStar />,
+//         menu: "service",
+//     },
+//     {
+//         shape: <GrInfo />,
+//         menu: "footer",
+//     },
+// ];
+
+const menuData = {
+    main: {
+        icon: <FiHome />,
+        name: "",
     },
-    {
-        shape: <FaBookOpen />,
-        menu: "introduce",
+    introduce: {
+        icon: <FaBookOpen />,
+        name: "",
     },
-    {
-        shape: <AiFillStar />,
-        menu: "service",
+    service: {
+        icon: <AiFillStar />,
+        name: "",
     },
-    {
-        shape: <GrInfo />,
-        menu: "footer",
+    footer: {
+        icon: <GrInfo />,
+        name: "",
     },
-];
+};
 
 interface MenuBarProps {
     onNavigate?: (section: string) => void;
@@ -33,20 +54,25 @@ interface MenuBarProps {
 }
 
 // index 찾기
-const findMenuIndex = (menuName) => {
-    return icons.findIndex((icon) => icon.menu === menuName);
-};
+// const findMenuIndex = (menuName) => {
+//     return icons.findIndex((icon) => icon.menu === menuName);
+// };
 
 const MenuBar = ({ onNavigate, activeSection }: MenuBarProps) => {
-    const icon = icons.map((x) => {
-        return x.shape;
-    });
+    // const icon = icons.map((x) => {
+    //     return x.shape;
+    // });
 
-    const [selectedMenu, setSelectedMenu] = useState(icon[0]);
+    const [selectedMenu, setSelectedMenu] = useState<MenuType | undefined>(
+        undefined
+    );
+    const [hoveredMenu, setHoveredMenu] = useState<MenuType | undefined>(
+        undefined
+    );
 
     // scroll ref 값에 따른 메뉴 활성화값 변경
     useEffect(() => {
-        setSelectedMenu(icon[findMenuIndex(activeSection)]);
+        setSelectedMenu(activeSection as MenuType);
         console.log(activeSection);
     }, [activeSection]);
 
@@ -58,29 +84,42 @@ const MenuBar = ({ onNavigate, activeSection }: MenuBarProps) => {
         <div className={Styles.menu_bar}>
             <motion.div
                 className={Styles.menu_list}
-                initial={{ opacity: activeSection === "footer" ? 1 : 0 }}
-                animate={{ opacity: activeSection === "footer" ? 0 : 1 }}
+                initial={
+                    activeSection === "footer"
+                        ? { opacity: 0, display: "none" }
+                        : { opacity: 1, display: "block" }
+                }
+                animate={
+                    activeSection === "footer"
+                        ? { opacity: 0, display: "none" }
+                        : { opacity: 1, display: "block" }
+                }
             >
                 <div className={Styles.menu_item}>
                     <ul>
-                        {icons.map((item, i) => (
-                            <Link
-                                key={`${item.shape}-${i}`}
-                                href={`/scrollPage#${item.menu}`}
+                        {Object.entries(menuData).map(([name, value], i) => (
+                            <SmoothLink
+                                key={`${name}-${i}`}
+                                id={name}
                                 // scroll={false}
                             >
                                 <li
                                     onMouseOver={() =>
-                                        setSelectedMenu(item.shape)
+                                        setHoveredMenu(name as MenuType)
                                     }
-                                    onMouseLeave={() =>
-                                        setSelectedMenu(
-                                            icon[findMenuIndex(activeSection)]
-                                        )
+                                    onMouseLeave={
+                                        () =>
+                                            setHoveredMenu(
+                                                selectedMenu as MenuType
+                                            )
+                                        // icon[findMenuIndex(activeSection)]
                                     }
-                                    // onClick={() => onNavigate(item.menu)}
+                                    onClick={() =>
+                                        setSelectedMenu(name as MenuType)
+                                    }
                                 >
-                                    {item.shape == selectedMenu ? (
+                                    {name === hoveredMenu ||
+                                    name === selectedMenu ? (
                                         <motion.div
                                             layoutId="spotlight"
                                             className={Styles.wrap_spotlight}
@@ -89,9 +128,9 @@ const MenuBar = ({ onNavigate, activeSection }: MenuBarProps) => {
                                             <div className={Styles.spotlight} />
                                         </motion.div>
                                     ) : null}
-                                    <span>{item.shape}</span>
+                                    <span>{value.icon}</span>
                                 </li>
-                            </Link>
+                            </SmoothLink>
                         ))}
                     </ul>
                 </div>
@@ -101,3 +140,18 @@ const MenuBar = ({ onNavigate, activeSection }: MenuBarProps) => {
 };
 
 export default MenuBar;
+
+const SmoothLink = ({ id, children, ...props }) => {
+    const handleClick = (e: React.MouseEvent) => {
+        e.preventDefault();
+        const element = document.getElementById(id);
+        if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+        }
+    };
+    return (
+        <Link href={`#${id}`} {...props} onClick={handleClick} passHref>
+            {children}
+        </Link>
+    );
+};

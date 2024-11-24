@@ -41,7 +41,6 @@ const paragraph =
     "YK 기획은/ 고객사의 비즈니스 목표, 타겟 고객,/ 브랜드 포지셔닝 등을/ 명확히 이해하고 마케팅 전략을 제안합니다./ 디지털 마케팅의 모든 분야에서/ 원스톱 솔루션을 제공하여/ 고객의 비즈니스 성장에/ 실질적인 가치를 더해드립니다.";
 
 export default function ScrollPage() {
-    const introduceRef = useRef<HTMLDivElement>(null);
     const serviceRef = useRef<HTMLDivElement>(null);
     const serviceContentRef = useRef<Array<HTMLDivElement>>([]);
 
@@ -109,7 +108,6 @@ export default function ScrollPage() {
                 <Paragraph
                     id="introduce"
                     value={paragraph}
-                    // ref={introduceRef}
                     data-name="introduce"
                 />{" "}
                 {/* Typography */}
