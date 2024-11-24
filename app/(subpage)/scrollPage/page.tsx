@@ -8,6 +8,8 @@ import Paragraph from "@/app/(subpage)/scrollPage/components/Paragraph";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import { useEffect, useRef, useState } from "react";
+import ModeSwitch from "./components/ModeSwitch";
+import Styles from "@/app/page.module.scss";
 
 const data = [
     {
@@ -137,7 +139,22 @@ export default function ScrollPage() {
                     ))}
                 </section>
                 <Footer id="footer" data-name="footer" />
-                <MenuBar activeSection={activeSection} />
+                <MenuBar
+                    activeSection={activeSection}
+                    onNavigate={(section) => {
+                        setActiveSection(section);
+                    }}
+                />
+                <ModeSwitch />
+                <a
+                    className={Styles.scroll_icon}
+                    style={
+                        activeSection === "footer"
+                            ? { display: "none" }
+                            : { display: "block" }
+                    }
+                    href="#"
+                ></a>
             </div>
         </>
     );

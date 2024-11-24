@@ -40,19 +40,31 @@ export default function ModeSwitch() {
 
     return (
         <div>
-        <motion.div 
-            className={Styles.switch_container}
-            onClick={toggle_mode}
-            initial= {{ scaleX: 1 }}
-            animate= {{ scaleX: open ? 0 : 1 }}
-            transition={{delay: open ? 0 : 0.3}}
-        >   
-            <div 
-                className={isDarkmode ? Styles.mini_dark_button : Styles.mini_right_button}
+            <motion.div
+                className={Styles.switch_container}
+                onClick={toggle_mode}
+                initial={{ scaleX: 1 }}
+                animate={{ scaleX: open ? 0 : 1 }}
+                transition={{ delay: open ? 0 : 0.3 }}
             >
-                {isDarkmode ? <p><FiMoon /></p> : <p><FiSun /></p>}
-            </div>
-            {/* <div
+                <div
+                    className={
+                        isDarkmode
+                            ? Styles.mini_dark_button
+                            : Styles.mini_right_button
+                    }
+                >
+                    {isDarkmode ? (
+                        <p>
+                            <FiMoon />
+                        </p>
+                    ) : (
+                        <p>
+                            <FiSun />
+                        </p>
+                    )}
+                </div>
+                {/* <div
                 data-selected={!isDarkmode}
                 className={Styles.mode}
             >
@@ -61,58 +73,52 @@ export default function ModeSwitch() {
             <div data-selected={isDarkmode} className={Styles.mode}>
                 <FiMoon />
             </div> */}
-        </motion.div>
-        <motion.div 
-            className={Styles.switch_container}
-            initial= {{ scaleX: 0 }}
-            animate= {{ scaleX: open ? 1 : 0 }}
-            onMouseLeave={toggle_mode}
-            transition={{ spring: 3 }}
-            style={{
-                transformOrigin: "right", 
-            }}
-        >
-            <div
-                className={
-                    isDarkmode ? Styles.switch_darkMode : Styles.switch
-                }
-                data-darkmode={isDarkmode}
-                onClick={toggleSwitch}
+            </motion.div>
+            <motion.div
+                className={Styles.switch_container}
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: open ? 1 : 0 }}
+                onMouseLeave={toggle_mode}
+                transition={{ spring: 3 }}
+                style={{
+                    transformOrigin: "right",
+                }}
             >
-                <motion.div
-                    className={Styles.handle}
-                    layout
-                    transition={{
-                        type: "spring",
-                        stiffness: 700,
-                        damping: 50,
-                    }}
-                />
-                <div className={Styles.innerWrapper}>
-                    <div
-                        data-selected={!isDarkmode}
-                        className={Styles.mode}
-                    >
-                        <FiSun />
-                        <span>Light</span>
-                    </div>
-                    <div data-selected={isDarkmode} className={Styles.mode}>
-                        <FiMoon />
-                        <span>Dark</span>
+                <div
+                    className={
+                        isDarkmode ? Styles.switch_darkMode : Styles.switch
+                    }
+                    data-darkmode={isDarkmode}
+                    onClick={toggleSwitch}
+                >
+                    <motion.div
+                        className={Styles.handle}
+                        layout
+                        transition={{
+                            type: "spring",
+                            stiffness: 700,
+                            damping: 50,
+                        }}
+                    />
+                    <div className={Styles.innerWrapper}>
+                        <div
+                            data-selected={!isDarkmode}
+                            className={Styles.mode}
+                        >
+                            <FiSun />
+                            <span>Light</span>
+                        </div>
+                        <div data-selected={isDarkmode} className={Styles.mode}>
+                            <FiMoon />
+                            <span>Dark</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </motion.div>
+            </motion.div>
         </div>
     );
 }
 
-const Toggle = ({
-}: {
-}) => {
-    return (
-        <motion.div>
-            
-        </motion.div>
-    );
+const Toggle = ({}: {}) => {
+    return <motion.div></motion.div>;
 };

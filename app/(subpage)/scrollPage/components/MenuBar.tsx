@@ -53,16 +53,7 @@ interface MenuBarProps {
     activeSection: string;
 }
 
-// index 찾기
-// const findMenuIndex = (menuName) => {
-//     return icons.findIndex((icon) => icon.menu === menuName);
-// };
-
 const MenuBar = ({ onNavigate, activeSection }: MenuBarProps) => {
-    // const icon = icons.map((x) => {
-    //     return x.shape;
-    // });
-
     const [selectedMenu, setSelectedMenu] = useState<MenuType | undefined>(
         undefined
     );
@@ -73,12 +64,7 @@ const MenuBar = ({ onNavigate, activeSection }: MenuBarProps) => {
     // scroll ref 값에 따른 메뉴 활성화값 변경
     useEffect(() => {
         setSelectedMenu(activeSection as MenuType);
-        console.log(activeSection);
     }, [activeSection]);
-
-    // const handleMouseOut = () => {
-    //     setSelectedMenu(selectedMenu); // 현재 메뉴로 이동되도록 수정
-    // };
 
     return (
         <div className={Styles.menu_bar}>
@@ -114,9 +100,12 @@ const MenuBar = ({ onNavigate, activeSection }: MenuBarProps) => {
                                             )
                                         // icon[findMenuIndex(activeSection)]
                                     }
-                                    onClick={() =>
-                                        setSelectedMenu(name as MenuType)
-                                    }
+                                    onClick={() => {
+                                        setSelectedMenu(name as MenuType);
+                                        onNavigate
+                                            ? onNavigate(name as MenuType)
+                                            : "";
+                                    }}
                                 >
                                     {name === hoveredMenu ||
                                     name === selectedMenu ? (
