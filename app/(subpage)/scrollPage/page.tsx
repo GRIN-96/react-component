@@ -1,12 +1,13 @@
 "use client";
 
-import { useScroll, useTransform } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
-import Paragraph from "@/app/(subpage)/scrollPage/components/Paragraph";
-import Main from "@/app/(subpage)/scrollPage/components/Main";
 import Footer from "@/app/(subpage)/scrollPage/components/Footer";
 import Images from "@/app/(subpage)/scrollPage/components/Image";
+import Main from "@/app/(subpage)/scrollPage/components/Main";
 import MenuBar from "@/app/(subpage)/scrollPage/components/MenuBar";
+import Paragraph from "@/app/(subpage)/scrollPage/components/Paragraph";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/dist/ScrollTrigger";
+import { useEffect, useRef, useState } from "react";
 
 const data = [
     {
@@ -39,96 +40,106 @@ const data = [
 const paragraph =
     "YK 기획은/ 고객사의 비즈니스 목표, 타겟 고객,/ 브랜드 포지셔닝 등을/ 명확히 이해하고 마케팅 전략을 제안합니다./ 디지털 마케팅의 모든 분야에서/ 원스톱 솔루션을 제공하여/ 고객의 비즈니스 성장에/ 실질적인 가치를 더해드립니다.";
 
-// 애니메이션 Variants
-const sectionVariants = {
-    hidden: {
-        opacity: 0,
-        y: 100, // 아래에서 위로 올라오는 효과
-    },
-    visible: {
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.8, ease: "easeOut" },
-    },
-    exit: {
-        opacity: 0,
-        y: -100, // 위로 사라지는 효과
-        transition: { duration: 0.5, ease: "easeIn" },
-    },
-};
-
 export default function ScrollPage() {
-    // const ref = useRef(null);
-
-    const mainRef = useRef<HTMLDivElement | null>(null);
-    const introduceRef = useRef<HTMLDivElement | null>(null);
-    const serviceRef = useRef<HTMLDivElement | null>(null);
-    const footerRef = useRef<HTMLDivElement | null>(null);
+    const introduceRef = useRef<HTMLDivElement>(null);
+    const serviceRef = useRef<HTMLDivElement>(null);
+    const serviceContentRef = useRef<Array<HTMLDivElement>>([]);
 
     const [activeSection, setActiveSection] = useState<string>("");
 
-    const scrollToSection = (sectionRef: React.RefObject<HTMLDivElement>) => {
-        if (sectionRef.current) {
-            window.scrollTo({
-                top: sectionRef.current.offsetTop,
-                behavior: "smooth",
+    useEffect(() => {
+        const handleObserver = (entries: IntersectionObserverEntry[]) => {
+            entries.forEach((entry: IntersectionObserverEntry) => {
+                if (entry.isIntersecting) {
+                    const observedTarget = entry.target as HTMLElement;
+                    setActiveSection(observedTarget.dataset.name as string);
+                }
+            });
+        };
+        const observer = new IntersectionObserver(handleObserver, {
+            threshold: [0.3, 0.7],
+        });
+        const targetSections = document.querySelectorAll("section");
+        if (targetSections.length > 0) {
+            targetSections.forEach((target) => {
+                observer.observe(target);
             });
         }
-    };
+        return () => {
+            observer.disconnect();
+        };
+    }, []);
 
     useEffect(() => {
-        const handleScroll = () => {
-            const sections = [
-                { name: "mainRef", ref: mainRef },
-                { name: "introduceRef", ref: introduceRef },
-                { name: "serviceRef", ref: serviceRef },
-                { name: "footerRef", ref: footerRef },
-            ];
+        // Gsap :: Horizontal Scroll 적용
+        gsap.registerPlugin(ScrollTrigger);
 
-            const currentSection = sections.find(
-                (section) =>
-                    section.ref.current &&
-                    section.ref.current.offsetTop <= window.scrollY + 200 &&
-                    section.ref.current.offsetTop +
-                        section.ref.current.offsetHeight >
-                        window.scrollY + 200
-            );
+        gsap.set(serviceContentRef.current, {
+            xPercent: 0,
+        });
+        gsap.to(serviceContentRef.current, {
+            xPercent: (serviceContentRef.current.length - 1) * -100,
+            ease: "none",
+            scrollTrigger: {
+                trigger: serviceRef.current,
+                scrub: true,
+                pin: true,
+                start: "top top",
+                end: () => {
+                    if (serviceRef.current) {
+                        return `+=${
+                            serviceRef.current.scrollWidth - window.innerWidth
+                        }`;
+                    }
+                    return 0;
+                },
+                snap: {},
+            },
+        });
 
-            if (currentSection) {
-                setActiveSection(currentSection.name);
-            }
+        return () => {
+            ScrollTrigger.getAll().forEach((st) => st.kill());
         };
-
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
     return (
         <>
             <div>
-                <Main ref={mainRef} /> {/* Main */}
-                <Paragraph value={paragraph} ref={introduceRef} />{" "}
+                <Main id="main" data-name="main" />
+                <Paragraph
+                    id="introduce"
+                    value={paragraph}
+                    // ref={introduceRef}
+                    data-name="introduce"
+                />{" "}
                 {/* Typography */}
-                <div
+                <section
+                    id="service"
+                    style={{
+                        display: "flex",
+                        flexWrap: "nowrap",
+                        alignItems: "center",
+                        justifyContent: "start",
+                        overflow: "hidden",
+                    }}
+                    data-name="service"
                     ref={serviceRef}
                 >
-                    {data.map((img) => (
-                        <Images key={img.id} text={img.text} url={img.url}/>
+                    {/* serviceContentRef */}
+                    {data.map((img, index) => (
+                        <Images
+                            key={img.id}
+                            text={img.text}
+                            url={img.url}
+                            ref={(ref) =>
+                                (serviceContentRef.current[index] = ref)
+                            }
+                            style={{ paddingLeft: "2.5rem" }}
+                        />
                     ))}
-                </div>
-                <Footer ref={footerRef} />
-                <MenuBar
-                    activeSection={activeSection}
-                    onNavigate={(section) => {
-                        if (section === "mainRef") scrollToSection(mainRef);
-                        else if (section === "introduceRef")
-                            scrollToSection(introduceRef);
-                        else if (section === "serviceRef")
-                            scrollToSection(serviceRef);
-                        else if (section === "footerRef")
-                            scrollToSection(footerRef);
-                    }}
-                />
+                </section>
+                <Footer id="footer" data-name="footer" />
+                <MenuBar activeSection={activeSection} />
             </div>
         </>
     );

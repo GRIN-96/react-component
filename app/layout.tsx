@@ -11,9 +11,7 @@ export default function RootLayout({ children }: { children: string }) {
         <html
             lang="en"
             suppressHydrationWarning
-            style={{
-                scrollSnapType: "y mandatory",
-            }}
+            style={{ scrollBehavior: "smooth" }}
         >
             <body>
                 <link

@@ -1,26 +1,19 @@
 import MagneticButton from "@/app/(subpage)/scrollPage/components/Magnetic_button";
 
-export default function Footer({ ref }) {
+export default function Footer({ ...props }) {
     return (
         <>
-            <section ref={ref}
+            <section
                 style={{
                     // backgroundColor: "gray"
                     position: "relative",
                     gap: "2rem",
                 }}
+                {...props}
             >
-                <MagneticButton 
-                    width={220}
-                >
-                    tmp
-                </MagneticButton>
+                <MagneticButton width={220}>tmp</MagneticButton>
 
-                <MagneticButton 
-                    width={220}
-                >
-                    tmp
-                </MagneticButton>
+                <MagneticButton width={220}>tmp</MagneticButton>
 
                 <MagneticButton
                     width={220}

@@ -6,29 +6,30 @@ import { FiHome } from "react-icons/fi";
 import { FaBookOpen } from "react-icons/fa";
 import { GrInfo } from "react-icons/gr";
 import Styles from "@/app/page.module.scss";
+import Link from "next/link";
 
 const icons = [
     {
         shape: <FiHome />,
-        menu: "mainRef",
+        menu: "main",
     },
     {
         shape: <FaBookOpen />,
-        menu: "introduceRef",
+        menu: "introduce",
     },
     {
         shape: <AiFillStar />,
-        menu: "serviceRef",
+        menu: "service",
     },
     {
         shape: <GrInfo />,
-        menu: "footerRef",
+        menu: "footer",
     },
 ];
 
 interface MenuBarProps {
-    onNavigate: (section: string) => void;
-    activeSection : string;
+    onNavigate?: (section: string) => void;
+    activeSection: string;
 }
 
 // index 찾기
@@ -46,6 +47,7 @@ const MenuBar = ({ onNavigate, activeSection }: MenuBarProps) => {
     // scroll ref 값에 따른 메뉴 활성화값 변경
     useEffect(() => {
         setSelectedMenu(icon[findMenuIndex(activeSection)]);
+        console.log(activeSection);
     }, [activeSection]);
 
     // const handleMouseOut = () => {
@@ -54,30 +56,42 @@ const MenuBar = ({ onNavigate, activeSection }: MenuBarProps) => {
 
     return (
         <div className={Styles.menu_bar}>
-            <motion.div className={Styles.menu_list}
-                initial={{opacity: activeSection === 'footerRef' ? 1 : 0}}
-                animate={{opacity: activeSection === 'footerRef' ? 0 : 1}}
+            <motion.div
+                className={Styles.menu_list}
+                initial={{ opacity: activeSection === "footer" ? 1 : 0 }}
+                animate={{ opacity: activeSection === "footer" ? 0 : 1 }}
             >
                 <div className={Styles.menu_item}>
                     <ul>
                         {icons.map((item, i) => (
-                            <li
+                            <Link
                                 key={`${item.shape}-${i}`}
-                                onMouseOver={() => setSelectedMenu(item.shape)}
-                                onMouseLeave={() => setSelectedMenu(icon[findMenuIndex(activeSection)])}
-                                onClick={() => onNavigate(item.menu)}
+                                href={`/scrollPage#${item.menu}`}
+                                // scroll={false}
                             >
-                                {item.shape == selectedMenu ? (
-                                    <motion.div
-                                        layoutId="spotlight"
-                                        className={Styles.wrap_spotlight}
-                                    >
-                                        <div className={Styles.circle} />
-                                        <div className={Styles.spotlight} />
-                                    </motion.div>
-                                ) : null}
-                                <span>{item.shape}</span>
-                            </li>
+                                <li
+                                    onMouseOver={() =>
+                                        setSelectedMenu(item.shape)
+                                    }
+                                    onMouseLeave={() =>
+                                        setSelectedMenu(
+                                            icon[findMenuIndex(activeSection)]
+                                        )
+                                    }
+                                    // onClick={() => onNavigate(item.menu)}
+                                >
+                                    {item.shape == selectedMenu ? (
+                                        <motion.div
+                                            layoutId="spotlight"
+                                            className={Styles.wrap_spotlight}
+                                        >
+                                            <div className={Styles.circle} />
+                                            <div className={Styles.spotlight} />
+                                        </motion.div>
+                                    ) : null}
+                                    <span>{item.shape}</span>
+                                </li>
+                            </Link>
                         ))}
                     </ul>
                 </div>

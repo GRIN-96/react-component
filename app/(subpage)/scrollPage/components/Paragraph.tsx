@@ -1,14 +1,10 @@
 "use client";
-import {
-    motion,
-    MotionValue,
-    useScroll,
-    useTransform
-} from "framer-motion";
+import { motion, MotionValue, useScroll, useTransform } from "framer-motion";
+import Styles from "@/app/page.module.scss";
 import { useRef } from "react";
-import Styles from "../../../page.module.scss";
 
-export default function Paragraph({ value, ref }) {
+export default function Paragraph({ value, ...props }) {
+    const ref = useRef(null);
     const { scrollYProgress } = useScroll({
         target: ref,
     });
@@ -19,6 +15,7 @@ export default function Paragraph({ value, ref }) {
             ref={ref}
             className={Styles.wrapParagraph}
             style={{ height: "300vh" }}
+            {...props}
         >
             <p className={Styles.paragraph}>
                 {words.map((word, i) => {

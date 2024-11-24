@@ -2,17 +2,24 @@ import { useScroll, useTransform, motion } from "framer-motion";
 import { useRef } from "react";
 import Styles from "../../../page.module.scss";
 
-export default function Images({ text, url }) {
-    const ref = useRef(null);
+export default function Images({ text, url, ref, style, ...props }) {
     const { scrollYProgress } = useScroll({ target: ref });
-    const y = useTransform(scrollYProgress, [0, 1], [-300, 350]);
+    // const y = useTransform(scrollYProgress, [0, 1], [-300, 350]);
 
     return (
-        <section>
-            <div ref={ref}>
-                <img src={url} alt={text} />
-            </div>
-            <motion.h2 style={{ y }}>{text}</motion.h2>
-        </section>
+        <div ref={ref} style={{ minWidth: "max-content", ...style }} {...props}>
+            <img
+                src={url}
+                alt={text}
+                style={{
+                    width: "80vh",
+                    height: "auto",
+                    maxHeight: "70vh",
+                    borderRadius: "5px",
+                    objectFit: "cover",
+                }}
+            />
+            <h2>{text}</h2>
+        </div>
     );
 }
