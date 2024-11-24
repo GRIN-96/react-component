@@ -57,14 +57,16 @@ const MenuBar = ({ onNavigate, activeSection }: MenuBarProps) => {
     const [selectedMenu, setSelectedMenu] = useState<MenuType | undefined>(
         undefined
     );
-    const [hoveredMenu, setHoveredMenu] = useState<MenuType | undefined>(
+    const [previousMenu, setreviousMenu] = useState<MenuType | undefined>(
         undefined
     );
 
     // scroll ref 값에 따른 메뉴 활성화값 변경
     useEffect(() => {
         setSelectedMenu(activeSection as MenuType);
+        setreviousMenu(activeSection as MenuType);
     }, [activeSection]);
+    useEffect(() => {}, [selectedMenu, previousMenu]);
 
     return (
         <div className={Styles.menu_bar}>
@@ -91,11 +93,11 @@ const MenuBar = ({ onNavigate, activeSection }: MenuBarProps) => {
                             >
                                 <li
                                     onMouseOver={() =>
-                                        setHoveredMenu(name as MenuType)
+                                        setreviousMenu(name as MenuType)
                                     }
                                     onMouseLeave={
                                         () =>
-                                            setHoveredMenu(
+                                            setreviousMenu(
                                                 selectedMenu as MenuType
                                             )
                                         // icon[findMenuIndex(activeSection)]
@@ -107,8 +109,8 @@ const MenuBar = ({ onNavigate, activeSection }: MenuBarProps) => {
                                             : "";
                                     }}
                                 >
-                                    {name === hoveredMenu ||
-                                    name === selectedMenu ? (
+                                    {(name === previousMenu ||
+                                        name === selectedMenu) && (
                                         <motion.div
                                             layoutId="spotlight"
                                             className={Styles.wrap_spotlight}
@@ -116,7 +118,7 @@ const MenuBar = ({ onNavigate, activeSection }: MenuBarProps) => {
                                             <div className={Styles.circle} />
                                             <div className={Styles.spotlight} />
                                         </motion.div>
-                                    ) : null}
+                                    )}
                                     <span>{value.icon}</span>
                                 </li>
                             </SmoothLink>
