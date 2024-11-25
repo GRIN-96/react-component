@@ -37,3 +37,7 @@ section {
     scroll-snap-align: center;
     perspective: 500px;
 }
+
+/* #underline + svg {
+    color: "#00e61b";
+} */
