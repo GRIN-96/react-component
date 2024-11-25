@@ -75,9 +75,6 @@ export default function ScrollPage() {
         // Gsap :: Horizontal Scroll 적용
         gsap.registerPlugin(ScrollTrigger);
 
-        gsap.set(serviceContentRef.current, {
-            xPercent: 0,
-        });
         gsap.to(serviceContentRef.current, {
             xPercent: (serviceContentRef.current.length - 1) * -100,
             ease: "none",
@@ -94,7 +91,12 @@ export default function ScrollPage() {
                     }
                     return 0;
                 },
-                snap: {},
+                snap: {
+                    snapTo: 1 / (serviceContentRef.current.length - 1), // 각 섹션의 스크롤 비율로 스냅
+                    duration: 0.5, // 스냅 이동 시간
+                    ease: "power1.inOut", // 부드러운 스냅 애니메이션
+                },
+                // snap: 1 / (serviceContentRef.current.length - 1),
             },
         });
 
@@ -111,7 +113,7 @@ export default function ScrollPage() {
                     id="introduce"
                     value={paragraph}
                     data-name="introduce"
-                />{" "}
+                />
                 {/* Typography */}
                 <section
                     id="service"
@@ -134,7 +136,7 @@ export default function ScrollPage() {
                             ref={(ref) =>
                                 (serviceContentRef.current[index] = ref)
                             }
-                            style={{ paddingLeft: "2.5rem" }}
+                            style={{ paddingLeft: "2.5rem"}}
                         />
                     ))}
                 </section>

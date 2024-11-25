@@ -3,7 +3,6 @@ import { useRef } from "react";
 import Styles from "../../../page.module.scss";
 
 export default function Images({ text, url, ref, style, ...props }) {
-    const { scrollYProgress } = useScroll({ target: ref });
     // const y = useTransform(scrollYProgress, [0, 1], [-300, 350]);
 
     return (
@@ -12,7 +11,6 @@ export default function Images({ text, url, ref, style, ...props }) {
                 src={url}
                 alt={text}
                 style={{
-                    width: "80vh",
                     height: "auto",
                     maxHeight: "70vh",
                     borderRadius: "5px",
