@@ -25,6 +25,9 @@ export default function Home() {
             <Link href="./scrollPage/" className={Styles.link}>
                 Sliding Page
             </Link>
+            <Link href="./mail/" className={Styles.link}>
+                mail Page
+            </Link>
         </main>
     );
 }

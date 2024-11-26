@@ -193,4 +193,4 @@ const TestComp = () => {
         </div>
     );
 };
-export default TestComp;
+export default AnimatedMenu;
