@@ -25,9 +25,10 @@ export const SendEmail = async (prevState: any, formData: FormData) => {
             from: process.env.GMAIL_USER, // 보내는 이메일
             to: `${email}`, // 받는 이메일
             subject: `문의하기: ${name}(${email})`,
-            html: `<h1>문의 내용</h1>
-                   <p>${subject}</p>
-                  `,
+            html: `
+                    <h1>문의 내용</h1>
+                    <p>${subject}</p>
+            `,
         });
         
         return { message: '이메일 전송 성공' };
